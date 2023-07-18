@@ -1,0 +1,94 @@
+spring:
+  profiles:
+    active: dev
+
+---
+server:
+  port: 9001
+
+##mybatis 配置
+mybatis:
+  type-aliases-package: com.yangyu.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    cache-enabled: true
+
+##spring配置
+spring:
+  profiles: dev
+  application:
+    name: springcloud-provider-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/db01?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: org.gjt.mm.mysql.Driver  #还可以用默认提供的 com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+
+## Eureka配置,将当前provider服务注册进 Eureka Server中
+## 地址就是我们在Eureka Server中配置的监控地址
+eureka:
+  client:
+    service-url:
+      ##单机版
+      #defaultZone: http://localhost:7001/eureka/
+      ##集群版,将服务发布到7001,7002,7003的集群上
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-hystrix-dept-status9001
+    prefer-ip-address: true   #true的话，可以显示服务的ip地址，不显示localhost
+
+## Eureka Client的info信息配置完善
+info:
+  app.name: yangyu-springcloud
+  company.name: yangyu.leon.com
+  app.age: 13
+  skill.name: Java-Spring-Cloud
+
+
+---
+server:
+  port: 19001
+
+##mybatis 配置
+mybatis:
+  type-aliases-package: com.yangyu.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    cache-enabled: true
+
+##spring配置
+spring:
+  profiles: prod
+  application:
+    name: springcloud-provider-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/db01?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: org.gjt.mm.mysql.Driver  #还可以用默认提供的 com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+
+## Eureka配置,将当前provider服务注册进 Eureka Server中
+## 地址就是我们在Eureka Server中配置的监控地址
+eureka:
+  client:
+    service-url:
+      ##单机版
+      #defaultZone: http://localhost:7001/eureka/
+      ##集群版,将服务发布到7001,7002,7003的集群上
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/,http://localhost:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-hystrix-dept-status9001
+    prefer-ip-address: true   #true的话，可以显示服务的ip地址，不显示localhost
+
+## Eureka Client的info信息配置完善
+info:
+  app.name: yangyu-springcloud
+  company.name: yangyu.leon.com
+  app.age: 13
+  skill.name: Java-Spring-Cloud
