@@ -8,10 +8,9 @@ server:
 
 #spring配置
 spring:
+  profiles: dev
   application:
     name: springcloud-config-eureka-7001
-  profiles:
-    active: dev
 
 #Eureka Server 配置
 eureka:
@@ -33,10 +32,9 @@ server:
 
 #spring配置
 spring:
+  profiles: prod
   application:
     name: springcloud-config-eureka-7001
-  profiles:
-    active: prod
 
 #Eureka Server 配置
 eureka:
